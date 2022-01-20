@@ -170,7 +170,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="U84-ri-XFf">
                                 <rect key="frame" x="40" y="84.000000000000014" width="310" height="230.33333333333337"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iNL-RB-Cl9">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iNL-RB-Cl9">
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="50"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -214,10 +214,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="Tyd-XA-QPf"/>
                     <connections>
+                        <outlet property="emailTextField" destination="iNL-RB-Cl9" id="PZO-Lj-NqR"/>
                         <outlet property="errorLabel" destination="bCx-o3-mVp" id="Kf3-7F-RY1"/>
-                        <outlet property="firstNameTextField" destination="iNL-RB-Cl9" id="Z78-oV-1Ss"/>
-                        <outlet property="lastNameTextField" destination="Myr-QS-eDO" id="Paa-jQ-Voc"/>
                         <outlet property="loginButton" destination="iXe-1s-qcE" id="URU-F0-LIE"/>
+                        <outlet property="passTextField" destination="Myr-QS-eDO" id="chQ-GK-p9H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BY5-xr-uML" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -227,7 +227,7 @@
         <!--Home Page View Controller-->
         <scene sceneID="JC5-CB-STT">
             <objects>
-                <viewController id="UNT-FB-feI" customClass="HomePageViewController" customModule="BasicLoginUI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewControl" id="UNT-FB-feI" customClass="HomePageViewController" customModule="BasicLoginUI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KhA-23-gIV">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginController: UIViewController {
 
-    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
     
-    @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var passTextField: UITextField!
     
     @IBOutlet weak var loginButton: UIButton!
     
@@ -27,24 +28,34 @@ class LoginController: UIViewController {
     func setUpElements() {
         errorLabel.alpha = 0
         
-        Utilities.styleTextField(firstNameTextField)
-        Utilities.styleTextField(lastNameTextField)
+        Utilities.styleTextField(emailTextField)
+        Utilities.styleTextField(passTextField)
         Utilities.styleFilledButton(loginButton)
         
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-     */
-
-    
     @IBAction func loginTap(_ sender: Any) {
+        
+        //clean data
+        let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let pass = passTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        //sign in
+        Auth.auth().signIn(withEmail: email, password: pass) { (result, error) in
+            if error != nil {
+                self.errorLabel.text = error!.localizedDescription
+                self.errorLabel.alpha = 1
+            }
+            
+            else {
+                let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? HomePageViewController
+                
+                self.view.window?.rootViewController = homeViewController
+                self.view.window?.makeKeyAndVisible()
+            }
+            
+        }
+        
     }
     
 }
