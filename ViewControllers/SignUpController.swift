@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseAuth
 
 class SignUpController: UIViewController {
@@ -79,12 +80,12 @@ class SignUpController: UIViewController {
                 //check errors
                 if err != nil {
                     //there was error
-                    self.errorDisplay("Error creating user")
+                    errorDisplay("Error creating user")
                 }
                 
                 else {
                     //successful user creation
-                    
+                    Firestore.firestore()
                 }
                 
             }
