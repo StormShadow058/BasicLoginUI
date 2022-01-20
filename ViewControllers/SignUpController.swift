@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SignUpController: UIViewController {
 
@@ -41,18 +42,61 @@ class SignUpController: UIViewController {
         Utilities.styleFilledButton(signUpButton)
         
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func validateFields() -> String? {
+        
+        //check all filled
+        if firstNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            lastNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            
+            return "Please fill in the fields."
+        }
+        
+        //if password is secure
+        let cleanPass = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if Utilities.isPasswordValid(cleanPass) == false {
+            return "Please check if password is at least 8 characters, contains a number and a special character."
+        }
+        
+        return nil
     }
-    */
 
     @IBAction func signUpTap(_ sender: Any) {
+        
+        let error = validateFields()
+        
+        if error != nil {
+            //show error message
+            errorDisplay(error!)
+        }
+        else {
+            
+            Auth.auth().createUser(withEmail: <#T##String#>, password: <#T##String#>) { (result, err) in
+                
+                //check errors
+                if err != nil {
+                    //there was error
+                    self.errorDisplay("Error creating user")
+                }
+                
+                else {
+                    //successful user creation
+                    
+                }
+                
+            }
+            
+        }
+        
+        func errorDisplay(_ text:String) {
+            errorLabel.text = text
+            errorLabel.alpha = 1
+        }
+        
+        
     }
     
     
